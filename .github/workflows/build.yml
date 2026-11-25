@@ -16,6 +16,8 @@ jobs:
         with:
           channel: stable
       - run: flutter create --org com.monvpn --project-name vpn_app .
+      - run: flutter pub add supabase_flutter
+      - run: sed -i 's#<application#<uses-permission android:name="android.permission.INTERNET"/><application#' android/app/src/main/AndroidManifest.xml
       - run: cp app/main.dart lib/main.dart
       - run: flutter build apk --release
       - uses: actions/upload-artifact@v4
